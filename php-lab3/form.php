@@ -9,15 +9,16 @@
 
 if (empty($_POST["name"])) {
     $nameErr = "Name is required";
-    
+   
 }else {
-    $usename=test_input($_POST["name"]);;
+    $usename=test_input($_POST["name"]);
+    
 }
 if (empty($_POST["email"])) {
     $emailErr = "Email is required";
     
 }else {
-    $useremail=test_input($_POST["email"]);;
+    $useremail=test_input($_POST["email"]);
 }
 if (empty($_POST["gender"])) {
     $genderErr = "Gender is required";
@@ -36,13 +37,36 @@ if (empty($_POST["content"])) {
     $usergroup = test_input($_POST["group"]);
   }
  }
+
 function test_input($data){
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
   }
- 
+  echo "<h1>User Data</h1>";
+  if(isset ($_POST['submit'])){
+    echo "Your Name is "." : ".$usename;
+    echo "<br>";
+
+    echo "Your Email is "." : ".$useremail;
+    echo "<br>";
+    echo "Your Group is "." : ".$usergroup;
+    echo "<br>";
+    echo "Your Gender is "." : ".$usergender;
+    echo "<br>";
+    echo "Class details is "." : ".$usertext;
+    echo "<br>";
+     if(!empty($_POST['courses'])) {
+        echo "Selected courses"." : ";
+            foreach($_POST['courses'] as $selected){
+               echo " ".  $selected ;
+            } 
+        
+          }
+         
+        
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,7 +98,7 @@ function test_input($data){
 <div class="col-md-4 inputGroupContainer">
 <div class="input-group">
 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-<input name="name" placeholder="Name" class="form-control"  type="text" require>
+<input name="name" placeholder="Name" class="form-control"  type="text" require value=<?php echo $usename;?>>
 </div>
 </div>
 </div>
@@ -85,7 +109,7 @@ function test_input($data){
 <div class="col-md-4 inputGroupContainer">
 <div class="input-group">
     <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-<input name="email" placeholder="E-Mail Address" class="form-control"  type="text" require>
+<input name="email" placeholder="E-Mail Address" class="form-control"  type="text" require value=<?php echo $useremail;?>>
 </div>
 </div>
 </div>
@@ -98,7 +122,7 @@ function test_input($data){
 <div class="col-md-4 inputGroupContainer">
 <div class="input-group">
    
-<input name="group"  class="form-control" type="text"> <span class="input-group-addon"></span>
+<input name="group"  class="form-control" type="text" value=<?php echo $usergroup;?>> <span class="input-group-addon"></span>
 </div>
 </div>
 </div>
@@ -131,7 +155,7 @@ function test_input($data){
 <div class="col-md-4 inputGroupContainer">
 <div class="input-group">
     <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-        <textarea class="form-control" name="content" placeholder="class details"></textarea>
+        <textarea class="form-control" name="content" placeholder="class details" ><?php echo $usertext;?></textarea>
 </div>
 </div>
 </div>
@@ -167,35 +191,6 @@ function test_input($data){
 </div>
 
 
-<h1>User Data</h1>
-<?php
-
-if(isset ($_POST['submit'])){
-    echo "Your Name is "." : ".$usename;
-    echo "<br>";
-    echo "Your Email is "." : ".$useremail;
-    echo "<br>";
-    echo "Your Group is "." : ".$usergroup;
-    echo "<br>";
-    echo "Your Gender is "." : ".$usergender;
-    echo "<br>";
-    echo "Class details is "." : ".$usertext;
-    echo "<br>";
-     if(!empty($_POST['courses'])) {
-        echo "Selected courses"." : ";
-            foreach($_POST['courses'] as $selected){
-               echo " ".  $selected ;
-            } 
-        
-          }
-
-}
-?>
-<!-- <?php
-    // setcookie("names",$usename,time()+3600, "/","", 0);
-    // echo $_COOKIE["names"]. "<br />";
-
-?> 
 
     
 </body>
