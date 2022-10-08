@@ -44,29 +44,7 @@ function test_input($data){
     $data = htmlspecialchars($data);
     return $data;
   }
-  echo "<h1>User Data</h1>";
-  if(isset ($_POST['submit'])){
-    echo "Your Name is "." : ".$usename;
-    echo "<br>";
-
-    echo "Your Email is "." : ".$useremail;
-    echo "<br>";
-    echo "Your Group is "." : ".$usergroup;
-    echo "<br>";
-    echo "Your Gender is "." : ".$usergender;
-    echo "<br>";
-    echo "Class details is "." : ".$usertext;
-    echo "<br>";
-     if(!empty($_POST['courses'])) {
-        echo "Selected courses"." : ";
-            foreach($_POST['courses'] as $selected){
-               echo " ".  $selected ;
-            } 
-        
-          }
-         
-        
-}
+ 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -190,7 +168,31 @@ function test_input($data){
 </div>
 </div>
 
+<?php
+ echo "<h1>User Data</h1>";
+ if(isset ($_POST['submit'])){
+   echo "Your Name is "." : ".$usename;
+   echo "<br>";
 
+   echo "Your Email is "." : ".$useremail;
+   echo "<br>";
+   echo "Your Group is "." : ".$usergroup;
+   echo "<br>";
+   echo "Your Gender is "." : ".$usergender;
+   echo "<br>";
+   echo "Class details is "." : ".$usertext;
+   echo "<br>";
+    if(!empty($_POST['courses'])) {
+       echo "Selected courses"." : ";
+           foreach($_POST['courses'] as $selected){
+              echo " ".  $selected ;
+           } 
+       
+         }
+        
+       
+}
+?>
 
     
 </body>
