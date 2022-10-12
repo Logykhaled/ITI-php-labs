@@ -1,11 +1,5 @@
-<?php
-$conn=mysqli_connect('localhost','root','','phptest');
-// if($conn){
-//     echo "connected";
-// }
-// else{
-//     die("noooo");
-// }
+<?php include "db.php";
+
 $query="SELECT * FROM login_users";
 
 $result=mysqli_query($conn,$query);
@@ -30,10 +24,8 @@ if(!$result){
     <title>Document</title>
 </head>
 <body>
-<div>
-  <h3>User Details</h3>
-  <a href="login.php"><button type="button" class="btn btn-success">Add New user</button>   
-</div>
+<h3>User Details</h3>
+
 <table class="table table-bordered">
   <thead class="thead-dark">
     <tr>
@@ -49,13 +41,17 @@ if(!$result){
     <?php
     if (mysqli_num_rows($result) > 0) {
     while ($row= mysqli_fetch_assoc($result)){?>
-    <tr>
-        <td><?php echo $row['userid']; ?></td>
-        <td><?php echo $row['username']; ?></td>
-        <td><?php echo $row['useremail']; ?></td>
-        <td><?php echo $row['gender']; ?></td>
+      <tr>
+         <td><?php echo $row['userid']; ?></td>
+         <td><?php echo $row['username']; ?></td>
+         <td><?php echo $row['useremail']; ?></td>
+         <td><?php echo $row['gender']; ?></td>
         <td><?php echo $row['mail_status']; ?></td>
-        <td><i class="fa-solid fa-trash"></i><i class="fa-sharp fa-solid fa-pen-to-square"></i><i class="fa-solid fa-eye"></i></td>
+        <td>
+          <i class="fa-solid fa-trash"></i>
+          <a href="updateuser.php?id=<?php echo $row['userid'];?>" ><i class="fa-sharp fa-solid fa-pen-to-square"></i> </a>
+          <a href="view.php?id=<?php echo $row['userid'];?>" ><i class="fa-solid fa-eye"></i></a>
+        </td>
     </tr>
     <?php
     }}?>
@@ -63,6 +59,9 @@ if(!$result){
   </tbody>
 </table>
 
+<div>
 
+  <a href="login.php"><button type="button" class="btn btn-success">Add New user</button>   
+</div>
 </body>
 </html>

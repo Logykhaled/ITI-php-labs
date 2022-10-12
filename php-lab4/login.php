@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>login</title>
         <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
@@ -20,19 +20,21 @@
       <center>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
         <form  action="<?php $_SERVER['PHP_SELF'];?>" method="post" >
-          <input type="text" hidden value=""/>
+         
           <!-- Email input -->
           <div class="form-outline mb-4">
+          <label class="form-label" for="form3Example3">Email address</label>
             <input type="email" id="form3Example3" class="form-control form-control-lg"
               placeholder="Enter a valid email address"  name="email"/>
-            <label class="form-label" for="form3Example3">Email address</label>
+           
           </div>
 
-          <!-- Password input -->
+          <!-- name input -->
           <div class="form-outline mb-3">
-            <input type="text" id="form3Example4" class="form-control form-control-lg"
+          <label class="form-label" for="form3Example4">name</label>
+           <input type="text" id="form3Example4" class="form-control form-control-lg"
               placeholder="Enter Name"  value=""  name="username"/>
-            <label class="form-label" for="form3Example4">name</label>
+           
           </div>
 
           <div class="d-flex justify-content-between align-items-center">
@@ -64,9 +66,7 @@
           <div class="text-center text-lg-start mt-4 pt-2">
             <button  type="submit" name="submit" class="btn btn-primary btn-lg"
               style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
-                class="link-danger">Register</a></p>
-          </div>
+           
           
         </form>
       </div>
@@ -75,7 +75,9 @@
   </div>
   
 </section>
-<?php
+<?php include "db.php";
+
+
     $username=$_POST['username'];
     $email=$_POST['email'];
     $usergender=$_POST['gender'];
@@ -90,15 +92,9 @@
          $mail_status = "no";
      } 
     
-    $conn=mysqli_connect('localhost','root','','phptest');
-    if($conn){
-        echo "connected";
-    }
-    else{
-        die("noooo");
-    }
- echo $usergender;
- }
+    
+//  echo $usergender;
+  
 
  $query="INSERT INTO login_users(username,useremail,gender,mail_status)";
  $query.="VALUES ('$username','$email',' $usergender','$mail_status')";
@@ -108,7 +104,7 @@
     die('Query failed'. mysqli_error());
  }
 
- 
+}
 ?>
 </body>
 </html>
