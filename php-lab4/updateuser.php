@@ -23,13 +23,9 @@ while ($row= mysqli_fetch_assoc($result)){
         $updateEmail=$_POST['email'];
         $updateGender=$_POST['gender'];
         $updateStatus=$_POST['mail_status'];
-        //echo $updateName;
+      
         $query="UPDATE login_users SET username='$updateName',useremail='$updateEmail',gender='$updateGender',mail_status='$updateStatus' WHERE userid=$id " ;
-        // $query.="username='$updateName', ";
-        // $query.="useremail='$updateEmail', ";
-        // $query.="gender='$updateGender', ";
-        // $query.="mail_status='$updateStatus' ";
-        // $query.="WHERE userid=$id";
+      
         $result=mysqli_query($conn,$query);
             if(!$result){
                 die('Query failed'. mysqli_error($conn));
